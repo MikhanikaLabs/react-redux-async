@@ -24,7 +24,7 @@ const getConnection = async (dispatch, authParam) => {
 			dispatch({ type: "ITEMS_IS_FAILED", payload: false });
 			dispatch({ type: "SET_AUTH", payload: data });
 			console.log("data.session=", data.session);
-			getReposAvait(dispatch, data.session);
+			getDataAvait(dispatch, data.session);
 		}
 	} catch (e) {
 		// statements
@@ -33,9 +33,9 @@ const getConnection = async (dispatch, authParam) => {
 	}
 };
 
-const getReposAvait = async (dispatch, query) => {
+const getDataAvait = async (dispatch, query) => {
 	dispatch({ type: "ITEMS_IS_FAILED", payload: false });
-	dispatch({ type: "SET_REPOS", payload: [] });
+	dispatch({ type: "LOAD_DATA", payload: [] });
 	dispatch({ type: "ITEMS_IS_LOADING", payload: true });
 
 	try {
@@ -52,7 +52,7 @@ const getReposAvait = async (dispatch, query) => {
 		} else {
 			dispatch({ type: "ITEMS_IS_LOADING", payload: false });
 			dispatch({ type: "ITEMS_IS_FAILED", payload: false });
-			dispatch({ type: "SET_REPOS", payload: data.symbols });
+			dispatch({ type: "LOAD_DATA", payload: data.symbols });
 		}
 	} catch (e) {
 		// statements
@@ -63,5 +63,5 @@ const getReposAvait = async (dispatch, query) => {
 
 export default{
 	getConnection,
-	getReposAvait
+	getDataAvait
 }

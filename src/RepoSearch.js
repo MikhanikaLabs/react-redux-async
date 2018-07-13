@@ -10,7 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 
-const RepoSearch = props => {
+const DataSearch = props => {
 	console.log("props.authParam.login:", props.authParam.login);
 	console.log("props.authParam.password:", props.authParam.password);
 	if (props.isLoading) {
@@ -18,7 +18,7 @@ const RepoSearch = props => {
 			<Fragment>
 				<AppBar position="static">
 					<Typography variant="title" color="inherit">
-						API to myfxbook
+						API to myfxbook (Loading...)
 					</Typography>
 				</AppBar>
 				<form noValidate autoComplete="off">
@@ -57,7 +57,7 @@ const RepoSearch = props => {
 			<Fragment>
 				<AppBar position="static">
 					<Typography variant="title" color="inherit">
-						Title
+						API to myfxbook
 					</Typography>
 				</AppBar>
 
@@ -86,10 +86,10 @@ const RepoSearch = props => {
 					</Button>
 				</form>
 				<ul>
-					{props.repos.map(repo => {
+					{props.extData.map(data => {
 						return (
-							<li key={repo.name}>
-								<a href={repo.html_url}>{repo.name}</a>
+							<li key={data.name}>
+								<a href={data.html_url}>{data.name}</a>
 							</li>
 						);
 					})}
@@ -124,7 +124,7 @@ const RepoSearch = props => {
 const MapStateToProps = state => {
 	return {
 		authParam: state.authParam,
-		repos: state.repos,
+		extData: state.extData,
 		isLoading: state.itemsIsLoading,
 		isFailed: state.itemsIsFailed,
 		dialogOpen: state.dialogOpen,
@@ -173,4 +173,4 @@ const MapDispatchToProps = dispatch => {
 };
 
 
-export default connect(MapStateToProps, MapDispatchToProps)(RepoSearch);
+export default connect(MapStateToProps, MapDispatchToProps)(DataSearch);
