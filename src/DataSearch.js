@@ -9,7 +9,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-
+ 
 const DataSearch = props => {
 	console.log("props.authParam.login:", props.authParam.login);
 	console.log("props.authParam.password:", props.authParam.password);
