@@ -2,7 +2,7 @@ import {createStore} from 'redux';
 
 
 const initialState = {
-	authParam: {login:'',password:''},
+	authParam: {login:'mlgsm7@gmail.com',password:'testmyfx'},
 	authData: {error: true, message:'',session:''},
 	extData : [],	
 	itemsIsLoading: false,
@@ -11,7 +11,6 @@ const initialState = {
 }
 
 const evtreducer = (state = initialState, action) => {
-	console.log('reducer running', action);
 	switch(action.type){
 		case "LOAD_DATA" : 
 			return Object.assign({},state, {extData: action.payload});	

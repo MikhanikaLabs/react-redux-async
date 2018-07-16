@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import Api from './Api.js';
+import Api from "./Api.js";
 import AppBar from "@material-ui/core/AppBar";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -9,10 +9,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
- 
+import TableView from './TableView';
+
 const DataSearch = props => {
-	console.log("props.authParam.login:", props.authParam.login);
-	console.log("props.authParam.password:", props.authParam.password);
 	if (props.isLoading) {
 		return (
 			<Fragment>
@@ -84,16 +83,8 @@ const DataSearch = props => {
 					>
 						Submit
 					</Button>
-				</form>
-				<ul>
-					{props.extData.map(data => {
-						return (
-							<li key={data.name}>
-								<a href={data.html_url}>{data.name}</a>
-							</li>
-						);
-					})}
-				</ul>
+					<TableView />
+				</form>				
 				<Dialog
 					open={props.dialogOpen}
 					keepMounted
@@ -153,24 +144,38 @@ const MapDispatchToProps = dispatch => {
 			});
 		},
 		handleOpenDialog: () => {
-			console.log("DIALOG_OPEN");
 			dispatch({
 				type: "DIALOG_OPEN",
 				payload: false
 			});
 		},
-		handleSubmit: (e, authParam) => {
-			console.log(
-				"login",
-				authParam.login,
-				"password",
-				authParam.password
-			);
+		handleSubmit: (e, authParam) => {			
 			e.preventDefault();
 			Api.getConnection(dispatch, authParam);
 		}
 	};
 };
 
-
 export default connect(MapStateToProps, MapDispatchToProps)(DataSearch);
+
+/*
+<TableCell numeric>
+											{n.calories}
+										</TableCell>
+										<TableCell numeric>{n.fat}</TableCell>
+										<TableCell numeric>{n.carbs}</TableCell>
+										<TableCell numeric>
+											{n.protein}
+										</TableCell>
+
+										<ul>
+					{props.extData.map(data => {
+						return (
+							<li key={data.name}>
+								<a href={data.html_url}>{data.name}</a>
+							</li>
+						);
+					})}
+				</ul>
+
+										*/
