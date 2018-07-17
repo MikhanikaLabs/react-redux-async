@@ -6,7 +6,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
-
 const copyKey = obj => {
 	var copy = [];
 	var i = 0;
@@ -16,14 +15,18 @@ const copyKey = obj => {
 	}
 	return copy;
 };
-
 const TableView = props => {
 	let clone = copyKey(props.extData[0]);
 	let tableCeil;
 	return (
 		<Table>
+			<TableHead>
+				{clone.map((prop, id) => {
+					return <TableCell key={id}>{prop}</TableCell>;
+				})}
+			</TableHead>
 			<TableBody>
-				{props.extData.map(data => {
+				{props.extData.map((data, id) => {
 					{
 						let tableStr = [];
 						clone.map(prop => {
@@ -38,51 +41,16 @@ const TableView = props => {
 									</TableCell>
 								);
 							}
-							tableStr.push(tableCeil);
+							return tableStr.push(tableCeil);
 						});
-
-						return (
-							<TableRow key={data.name}>
-							{tableStr}
-							</TableRow>
-						);
+						return <TableRow key={id}>{tableStr}</TableRow>;
 					}
 				})}
 			</TableBody>
 		</Table>
 	);
 };
-/*
 
-								myfx.symbols.map(function(id){
-                    for(var prop in id){ 
-                    console.log('prop',id[prop]);                
-                }
-            });
-            <TableCell numeric>{prop}</TableCell>
-            							<TableCell numeric>{data[prop]}</TableCell>													
-							<TableCell component="th" scope="row">
-								{data[prop].toString()}
-							</TableCell>							
-							clone.map(prop => {})
-							{tableStr[i]}		
-
-							<TableCell component="th" scope="row">
-									{data["name"]}
-								</TableCell>
-								<TableCell numeric>
-									{data["longPercentage"]}
-								</TableCell>
-								<TableCell numeric>
-									{data["shortPercentage"]}
-								</TableCell>
-								<TableCell numeric>
-									{data["shortVolume"]}
-								</TableCell>		
-															{tableStr.map((object,i) => <ObjectRow obj={object} key={i} />)}							
-		
-
-*/
 const MapStateToProps = state => {
 	return {
 		authParam: state.authParam,
@@ -95,5 +63,3 @@ const MapStateToProps = state => {
 };
 
 export default connect(MapStateToProps)(TableView);
-
-//<TableCell numeric>{n.calories}</TableCell>
