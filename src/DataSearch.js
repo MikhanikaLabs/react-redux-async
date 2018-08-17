@@ -17,7 +17,7 @@ const DataSearch = props => {
 			<Fragment>
 				<AppBar position="static">
 					<Typography variant="title" color="inherit">
-						API to myfxbook (Loading...)
+						API to https://www.myfxbook.com (Loading...)
 					</Typography>
 				</AppBar>
 				<form noValidate autoComplete="off">
