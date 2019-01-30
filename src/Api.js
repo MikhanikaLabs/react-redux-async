@@ -60,10 +60,13 @@ const getConnection = async (dispatch, authParam) => {
 	dispatch({ type: "ITEMS_IS_LOADING", payload: true });
 
 	try {
+		const proxyurl = "https://shielded-brushlands-73771.herokuapp.com/";
+		const auth = `https://www.myfxbook.com/api/login.json?email=${authParam.login}&password=${authParam.password}`;
 		const api_call = await fetch(
-			`https://www.myfxbook.com/api/login.json?email=${
-				authParam.login
-			}&password=${authParam.password}`
+			// `https://www.myfxbook.com/api/login.json?email=${
+			// 	authParam.login
+			// }&password=${authParam.password}`
+			proxyurl+auth
 		,myInit);
 		const data = await api_call.json();
 		console.log("data:", data);
@@ -92,8 +95,11 @@ const getDataAvait = async (dispatch, query) => {
 	dispatch({ type: "ITEMS_IS_LOADING", payload: true });
 
 	try {
+		const proxyurl = "https://shielded-brushlands-73771.herokuapp.com/";
+		const url=`https://www.myfxbook.com/api/get-community-outlook.json?session=${query}`
 		const api_call = await fetch(
-			`https://www.myfxbook.com/api/get-community-outlook.json?session=${query}`
+			proxyurl + url
+	//		`https://www.myfxbook.com/api/get-community-outlook.json?session=${query}`
 			,myInit
 		);
 		const data = await api_call.json();

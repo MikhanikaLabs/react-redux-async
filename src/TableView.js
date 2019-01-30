@@ -26,20 +26,15 @@ const TableView = props => {
 				})}
 			</TableHead>
 			<TableBody>
-				{props.extData.map((data, id) => {
+				{props.extData.map((data,id) => {
 					{
 						let tableStr = [];
-						clone.map(prop => {
+						clone.map((prop,idx) => {
 							if (typeof data[prop] === "number") {
-								tableCeil = (
-									<TableCell numeric>{data[prop]}</TableCell>
-								);
-							} else if (typeof data[prop] === "string") {
-								tableCeil = (
-									<TableCell component="th" scope="row">
-										{data[prop]}
-									</TableCell>
-								);
+								tableCeil = (<TableCell  numeric key={idx} >{data[prop]}</TableCell>);
+							} 
+							else if (typeof data[prop] === "string") {
+								tableCeil = (<TableCell component="th" scope="row" key={idx}>{data[prop]}</TableCell>);
 							}
 							return tableStr.push(tableCeil);
 						});
