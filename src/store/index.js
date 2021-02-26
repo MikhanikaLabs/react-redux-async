@@ -2,7 +2,7 @@ import {createStore} from 'redux';
 
 
 const initialState = {
-	authParam: {login:'mlgsm7@gmail.com',password:'testmyfx'},
+	authParam: {login:'',password:''},
 	authData: {error: true, message:'',session:''},
 	extData : [],	
 	itemsIsLoading: false,
